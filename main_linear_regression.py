@@ -94,6 +94,9 @@ Y = final_df["Recaudacion"]
 
 X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.03, random_state=123)
 
+# Split Leagues column by ',' and create a new column with a numerical representation of each value
+# https://stackoverflow.com/questions/34007308/linear-regression-analysis-with-string-categorical-features-variables
+
 
 scaler = StandardScaler()
 train_scaled = scaler.fit_transform(X_train)
