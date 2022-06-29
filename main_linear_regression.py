@@ -69,6 +69,11 @@ df['Month'] = df['Jornada_Date'].dt.month
 #df['Season_2'] = df['Season'].str.split('/').apply(lambda x: x[1])
 
 #Transform Recaudacion to float
+
+for row in df['Recaudacion']:
+    if type(row) is not float:
+        print(row)
+
 df['Recaudacion'] = df['Recaudacion'].astype(float)
 
 
@@ -80,13 +85,17 @@ print(min_recaudacion)
 # Filter by Season
 #df_season = df[df['Season'] == '20/21']
 # Transform NaN from Bote_Next_Jornada to 0
-df['Bote'] = df['Bote'].fillna(0)
+df['BOTE'] = df['BOTE'].fillna(0)
 
 #final_df = df[["Jornada","Bote","Recaudacion","Week_Day","Month","Season_1","Season_2"]]
-final_df = df[["Jornada","Bote","Recaudacion","Week_Day","Month"]]
+final_df = df[["Jornada","BOTE","Recaudacion","Week_Day","Month"]]
 print(final_df)
 #print(final_df.describe())
 
+
+dict_predict = {"Jornada":62,"BOTE":0,"Week_Day":6,"Month":6}
+#Transform previous dict to pandas
+predict_df = pd.DataFrame(dict_predict, index=[0])
 
 
 X = final_df.drop(["Recaudacion"], axis=1)
